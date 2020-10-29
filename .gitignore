@@ -1,0 +1,5 @@
+
+.vagrant/
+.ssh-config
+Vagrantfile
+*.o
