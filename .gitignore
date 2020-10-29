@@ -3,3 +3,6 @@
 .ssh-config
 Vagrantfile
 *.o
+
+test/raw_soc_test
+
