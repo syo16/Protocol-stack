@@ -4,7 +4,4 @@
 Vagrantfile
 *.o
 
-test/raw_soc_test
-test/raw_test
-test/ethernet_test
-
+test/*_test
