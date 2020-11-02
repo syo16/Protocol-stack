@@ -1,6 +1,7 @@
 #include "raw.h"
 #include <signal.h>
 #include <stdio.h>
+#include "util.h"
 
 volatile sig_atomic_t terminate;
 
@@ -10,6 +11,7 @@ static void on_signal(int s) {
 
 static void dump(uint8_t *frame, size_t len, void *arg) {
     fprintf(stderr, "%s: receive %zu octets\n", (char *)arg, len);
+    hexdump(stderr, frame, len);
 }
 
 int main(int argc, char const *argv[]) {
