@@ -79,6 +79,9 @@ static void netdev_rx_handler(struct netdev *dev, uint16_t type, uint8_t *packet
     }
 }
 
+struct netdev *netdev_root(void) {
+    return devices;
+}
 
 struct netdev *netdev_alloc(uint16_t type) {
     struct netdev_driver *driver;

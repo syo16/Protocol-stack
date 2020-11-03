@@ -72,6 +72,7 @@ struct netdev {
 int netdev_driver_register(struct netdev_def *def);
 int netdev_proto_register(unsigned short type, void (*handler)(uint8_t *packet, size_t plen, struct netdev *dev));
 
+struct netdev *netdev_root(void);
 struct netdev *netdev_alloc(uint16_t type);
 int netdev_add_netif(struct netdev *dev, struct netif *netif);
 struct netif *netdev_get_netif(struct netdev *dev, int family);
