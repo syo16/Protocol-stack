@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef HAVE_TAP
+#include "raw/tap.h"
+extern struct rawdev_ops tap_dev_ops;
+#endif
+
 #ifdef HAVE_PF_PACKET
 #include "raw/soc.h"
 #define RAWDEV_TYPE_DEFAULT RAWDEV_TYPE_SOCKET
@@ -26,11 +31,18 @@ struct rawdev *rawdev_alloc(uint8_t type, char *name) {
     }
 
     switch(type) {
+#ifdef HAVE_TAP
+        case RAWDEV_TYPE_TAP:
+            ops = &tap_dev_ops;
+            break;
+#endif
+
 #ifdef HAVE_PF_PACKET
         case RAWDEV_TYPE_SOCKET:
             ops = &soc_dev_ops;
             break;
 #endif
+
         default:
             fprintf(stderr, "unsupported raw device type (%u)\n", type);
             return NULL;

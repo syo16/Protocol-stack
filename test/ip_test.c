@@ -26,7 +26,7 @@ int main(int argc, char const *argv[]) {
     sigset_t sigset;
     int signo;
     struct netdev *dev;
-    char *name = "eth1", *ipaddr = "192.168.33.10";
+    char *name = "tap", *ipaddr = "192.168.33.11";
     struct netif_ip iface = {};
 
     sigemptyset(&sigset);
@@ -57,7 +57,7 @@ int main(int argc, char const *argv[]) {
 
     char *data = "hello world";
     ip_addr_t dst;
-    if (ip_addr_pton("192.168.33.1", &dst) != 0) {
+    if (ip_addr_pton("192.168.33.10", &dst) != 0) {
         fprintf(stderr, "ip_addr_pton: failed");
         return -1;
     }
