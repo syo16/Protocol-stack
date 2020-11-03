@@ -7,7 +7,6 @@
 #include "net.h"
 #include "raw.h"
 
-#define IP_ORIGINAL_PROTOCOL 100
 
 static int setup(void) {
     if (ethernet_init() == -1) {
@@ -62,7 +61,7 @@ int main(int argc, char const *argv[]) {
         fprintf(stderr, "ip_addr_pton: failed");
         return -1;
     }
-    if (ip_tx((struct netif *)&iface, IP_ORIGINAL_PROTOCOL, (uint8_t *)data, 12, &dst) == -1) {
+    if (ip_tx((struct netif *)&iface, IP_PROTOCOL_RAW, (uint8_t *)data, 12, &dst) == -1) {
         fprintf(stderr, "ip_tx: failed\n");
         return -1;
     }
